@@ -1,26 +1,21 @@
-docs/       存放各种静态数据，文档，配置文件等
-src/        存放源码和协助控制源码逻辑的公共文件
+mongo/          数据库操作
+yolo3/          目标检测模型
+utils/          存放各种重复度较高的工具函数
 
-对接步骤
-1.打开mongodb数据库的连接，redis缓存服务器
-    mongodb开机自动启动
-    redis服务需要主动开启
-2.进入人脸检测算法所在目录
-    cd ~/root/face_sdk/bin/
-3.修改 ~/robot_ins/docs/configuration.txt(如果IP 端口等发生了改变)
-4.开启机器人巡检项目
-    python3 ~/robot_ins/src/tcpclient.py
+settings/       存放控制各线程运转的setting_json文件
 
-可能会出现的问题
-    a).在参数设置和周期检测（安全帽检测）时显示无法解析json_data
-        对方设置的参数设置和周期检测报文的事件间隔为500ms，当延迟较高时可能出现两个报文一起接收的现象，
-        让对方重新发送这两个报文即可
-    b).对方接收报文时无法解析，要求我方报文发送有间隔
-        在newthread.py中搜索"建立报文发送队列间隔机制"，将该部分与对应下半部分注释去掉，根据对方要求的对时间
-        间隔进行修改即可
-    c).台式机上，有关setting.json文件的读取报错
-        报错原因是setting.json文件中的信息格式不对，但是出现此问题的根本原因应该是电脑或者python读取机制的问题
-        关闭项目，重新开启即可
-    d).开启项目时报错，显示端口已被占用
-        当项目不正常关闭时可能会出现这个问题，系统尚未回收资源
-        等待一段时间，再次开启项目
+gParam.py       设置全局变量ss
+inspection.py   根据参数生成格式适合的即时报文
+create_json.py  生成报文用的工具函数
+
+videocap.py     视频流截取线程类ss
+facedetect.py   截取人脸，分析线程类ss
+periodins.py    周期巡检，安全帽识别线程类
+stoppableThread.py  周期巡检，设定巡检时间后开启的可自动按时结束，也可主动取消的线程类
+event.py        事件响应线程类
+smokingins.py   事件响应，吸烟检测类，通过事件响应线程调用类中方法
+newthread.py    报文发送线程类，将redis队列中分析得到的消息用报文格式发送到服务端
+
+
+tcpclient.py    运行时的主逻辑
+test.py         每次单元测试时用来测试修改
