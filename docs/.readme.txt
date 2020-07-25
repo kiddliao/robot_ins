@@ -1,0 +1,13 @@
+Face/           存储在图片中截取到的人脸图片
+FaceDB/         存储员工信息中的人脸照片，用来做比对
+FaceClipXml/    存储人脸截取时的配置
+FeatureData/    保存传入的人脸特征（现已废弃）
+font/           存储安全帽绘制边框时的字体
+HelmetIns/      存储安全帽识别后已经绘制完边框的图片（虽然不知道有没有用）
+model_data/     存储目标检测模型及其配置，权重等
+SmokingIns/     存储吸烟检测识别后的图片
+Video/          存储要单独拿出来截图的本地视频
+VideoSplit/     存储视频流（或视频）中截取下来的图片
+
+
+configuration.txt   存储客户端和服务端的连接配置, 和redis缓存间的连接配置

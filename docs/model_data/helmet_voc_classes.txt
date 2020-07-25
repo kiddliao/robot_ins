@@ -1,0 +1,10 @@
+switcher0_0
+switcher0_1
+switcher1_0
+switcher1_1
+blue
+yellow
+red
+white
+person
+head
